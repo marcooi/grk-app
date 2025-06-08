@@ -19,6 +19,12 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     zip \
     unzip \
+    intl \
+    mbstring \
+    bcmath \
+    exif \
+    opcache \
+    gd \
     supervisor
     
 
