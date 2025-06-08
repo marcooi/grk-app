@@ -81,8 +81,8 @@ WORKDIR /var/www
 
 USER $user
 
-# Install npm dependencies (optional: if you need to install them during build)
-RUN npm install
+# # Install npm dependencies (optional: if you need to install them during build)
+# RUN npm install
 
 # Expose port if necessary
 EXPOSE 3000
