@@ -1,5 +1,8 @@
 - Clone Repository  
-     `git clone https://github.com/marcooi/laravel-docker-2.git `
+     `git clone https://github.com/marcooi/grk-app.git `
+
+- change folder
+    ` cd grk-app/ `
 
 - Change this based on your preference
 

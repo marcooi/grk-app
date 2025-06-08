@@ -12,20 +12,41 @@ ARG uid
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
-    git \
-    curl \
+    libicu-dev \
     libpng-dev \
+    libjpeg62-turbo-dev \
+    libfreetype6-dev \
+    libzip-dev \
     libonig-dev \
     libxml2-dev \
-    zip \
+    supervisor \
+    git \
+    curl \
     unzip \
-    intl \
-    mbstring \
-    bcmath \
-    exif \
-    opcache \
-    gd \
-    supervisor
+    zip
+
+RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install -j$(nproc) gd \
+    && docker-php-ext-install intl mbstring bcmath opcache zip
+
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
+
+
+# RUN apt-get update && apt-get install -y \
+#     git \
+#     curl \
+#     libpng-dev \
+#     libonig-dev \
+#     libxml2-dev \
+#     zip \
+#     unzip \
+#     intl \
+#     mbstring \
+#     bcmath \
+#     exif \
+#     opcache \
+#     gd \
+#     supervisor
     
 
 # Install selected extensions and other stuff
