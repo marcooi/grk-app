@@ -1,0 +1,12 @@
+created:
+    - database/factories/PemakaianGasFactory.php
+    - database/migrations/2025_06_02_151743_create_pemakaian_gases_table.php
+    - app/Models/PemakaianGas.php
+models:
+    Book: { title: string, author: string, description: text }
+    Contact: { name: string }
+    Post: { title: string, content: text }
+    User: { name: string, email: string, email_verified_at: 'timestamp nullable', password: 'string nullable', remember_token: 'string:100 nullable', avatar_url: 'string nullable' }
+    PemakaianListrik: { id: uuid, data: jsonb, deleted_at: timestamp }
+    PemakaianSolar: { id: uuid, data: jsonb, deleted_at: timestamp }
+    PemakaianGas: { id: uuid, data: jsonb, deleted_at: timestamp }

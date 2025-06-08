@@ -1,0 +1,14 @@
+models:
+  PemakaianGas:
+    id: uuid
+    data: jsonb
+    deleted_at: timestamp
+
+  # Warehouse:
+  #   id: uuid
+  #   name: string:10
+  #   description: string:100
+  #   factory: string:100
+
+controllers:
+  # ...
