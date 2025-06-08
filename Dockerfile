@@ -1,5 +1,4 @@
 FROM php:8.3.0-fpm
-# FROM php:8.2-fpm-buster
 
 ENV ACCEPT_EULA=Y
 
@@ -25,29 +24,18 @@ RUN apt-get update && apt-get install -y \
     unzip \
     zip
 
+# Install Node.js and npm
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
+    && apt-get install -y nodejs
+
+# Verify Node.js and npm installation
+RUN node -v && npm -v
+
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install -j$(nproc) gd \
     && docker-php-ext-install intl mbstring bcmath opcache zip
 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-
-
-# RUN apt-get update && apt-get install -y \
-#     git \
-#     curl \
-#     libpng-dev \
-#     libonig-dev \
-#     libxml2-dev \
-#     zip \
-#     unzip \
-#     intl \
-#     mbstring \
-#     bcmath \
-#     exif \
-#     opcache \
-#     gd \
-#     supervisor
-    
 
 # Install selected extensions and other stuff
 RUN apt-get update \
@@ -64,19 +52,6 @@ ADD https://github.com/mlocati/docker-php-extension-installer/releases/latest/do
 
 RUN chmod +x /usr/local/bin/install-php-extensions && \
     install-php-extensions sqlsrv pdo_sqlsrv
-    
-# RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
-#     && curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list \
-#     && apt-get update \
-#     && apt-get -y --no-install-recommends install msodbcsql17 unixodbc-dev \
-#     && pecl install sqlsrv \
-#     && pecl install pdo_sqlsrv \
-#     && echo "extension=pdo_sqlsrv.so" >> `php --ini | grep "Scan for additional .ini files" | sed -e "s|.*:\s*||"`/30-pdo_sqlsrv.ini \
-#     && echo "extension=sqlsrv.so" >> `php --ini | grep "Scan for additional .ini files" | sed -e "s|.*:\s*||"`/30-sqlsrv.ini \
-#     && apt-get clean; rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
-
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
@@ -86,7 +61,6 @@ RUN apt-get update && \
      apt-get install -y \
          libzip-dev \
          && docker-php-ext-install zip
-
 
 # Install Supervisor
 RUN apt-get update && apt-get install -y supervisor
@@ -102,13 +76,13 @@ RUN mkdir -p /home/$user/.composer && \
 RUN echo 'memory_limit = 2048M' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini;
 RUN echo "max_execution_time=900" >> /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
-
-# RUN php artisan route:cache
-# RUN php artisan config:cache
-# RUN php artisan view:cache
-# RUN php artisan event:cache
-
 # Set working directory
 WORKDIR /var/www
 
 USER $user
+
+# Install npm dependencies (optional: if you need to install them during build)
+RUN npm install
+
+# Expose port if necessary
+EXPOSE 3000

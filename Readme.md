@@ -50,7 +50,7 @@
 - cd src  
  
 - copy .env.example to .env  
-     `cp .env.example .env`
+     ` cp .env.example .env`
 
 - edit .env  
     `nano .env`  
@@ -70,8 +70,11 @@
 
 - install and run composer   
      ` composer install --optimize-autoloader --no-dev `  
+     ` composer require fakerphp/faker --dev `
+
      ` php artisan migrate `
      ` php artisan key:generate `
+     ` npm run build && npm run dev `
      ` composer dump-autoload `
      ` php artisan storage:link` 
 
