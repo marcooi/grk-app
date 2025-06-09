@@ -12,18 +12,9 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware) {
-         //  $middleware->trustProxies(at: '*');   // Uncomment to trust all proxies
+        $middleware->trustProxies(at: '*');   // Uncomment to trust all proxies
 
-         $middleware->trustProxies(at: [
-               '202.74.74.220', // IP address of the proxy server
-         ]);      
-
-         $middleware->trustProxies(headers: Request::HEADER_X_FORWARDED_FOR |
-            Request::HEADER_X_FORWARDED_HOST |
-            Request::HEADER_X_FORWARDED_PORT |
-            Request::HEADER_X_FORWARDED_PROTO |
-            Request::HEADER_X_FORWARDED_AWS_ELB
-        );
+             
     })
     ->withExceptions(function (Exceptions $exceptions) {
         //
