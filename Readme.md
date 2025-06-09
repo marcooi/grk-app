@@ -4,6 +4,21 @@
 - change folder
     ` cd grk-app/ `
 
+- Install Node Js for Vite ( Optional )
+
+      # Download and install nvm:
+      curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+      # in lieu of restarting the shell
+      \. "$HOME/.nvm/nvm.sh"
+      # Download and install Node.js:
+      nvm install 22
+      # Verify the Node.js version:
+      node -v # Should print "v22.16.0".
+      nvm current # Should print "v22.16.0".
+      # Verify npm version:
+      npm -v # Should print "10.9.2".  
+
+
 - Change this based on your preference
 
     == app:  ==
@@ -74,7 +89,7 @@
 
      ` php artisan migrate `
      ` php artisan key:generate `
-     ` npm run build && npm run dev `
+     ` npm run build `
      ` composer dump-autoload `
      ` php artisan storage:link` 
 
