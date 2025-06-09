@@ -18,6 +18,9 @@
       # Verify npm version:
       npm -v # Should print "10.9.2".  
 
+- Build Vite
+      ` cd src `
+      ` npm run build `
 
 - Change this based on your preference
 
