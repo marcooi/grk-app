@@ -93,8 +93,14 @@
      ` php artisan migrate `
      ` php artisan key:generate `
      ` npm run build `
+     ` php artisan shield:generate --all` 
+     ` php artisan shield:super-admin` 
+
+
      ` composer dump-autoload `
      ` php artisan storage:link` 
+
+    
 
      
 

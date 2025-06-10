@@ -26,6 +26,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "owenvoke/blade-fontawesome": "^2.8",
+        "predis/predis": "^3.0",
         "pxlrbt/filament-excel": "^2.4",
         "resend/resend-laravel": "^0.16.1",
         "rupadana/filament-api-service": "^3.4.4",
